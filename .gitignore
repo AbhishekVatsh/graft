@@ -1,0 +1,12 @@
+# Signing certificate and its password: private, never commit.
+cert/
+
+# Adobe's ZXPSignCmd binary (download it from Adobe-CEP/CEP-Resources).
+tools/
+
+# Build output. Attach .zxp files to GitHub Releases instead.
+dist/
+
+# macOS
+.DS_Store
+._*

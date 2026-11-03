@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graft</title>
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+  <header class="bar">
+    <button id="pick" class="btn primary" title="Choose an .aep to import from">Choose project…</button>
+    <div id="source" class="source" title="">No project loaded</div>
+    <button id="close" class="icon-btn" title="Close and discard" hidden>✕</button>
+  </header>
+
+  <div id="tools" class="tools" hidden>
+    <input id="search" type="search" placeholder="Search items…" autocomplete="off" spellcheck="false">
+    <div class="chips" id="chips">
+      <label class="chip"><input type="checkbox" data-kind="comp" checked> Comps</label>
+      <label class="chip"><input type="checkbox" data-kind="media" checked> Media</label>
+      <label class="chip"><input type="checkbox" data-kind="solid" checked> Solids</label>
+    </div>
+  </div>
+
+  <main id="tree" class="tree">
+    <div class="empty">
+      <p><strong>Graft</strong> pulls comps and footage out of another After Effects project without opening it.</p>
+      <ol>
+        <li>Choose a project</li>
+        <li>Tick what you need. Dependencies come along automatically</li>
+        <li>Import</li>
+      </ol>
+    </div>
+  </main>
+
+  <footer id="foot" class="foot" hidden>
+    <label class="opt"><input id="merge" type="checkbox" checked> Merge into matching folders</label>
+    <div id="summary" class="summary">Nothing selected</div>
+    <button id="import" class="btn primary wide" disabled>Import selected</button>
+  </footer>
+
+  <div id="status" class="status" hidden></div>
+
+  <div id="dup" class="overlay" hidden>
+    <div class="dialog" role="dialog" aria-labelledby="dup-title">
+      <div class="dialog-head">
+        <span id="dup-title">Already in this project</span>
+        <button class="icon-btn" data-choice="cancel" title="Cancel import">✕</button>
+      </div>
+      <p><strong data-f="name"></strong> already exists <span data-f="where"></span>
+        <span class="dim">(<span data-f="match"></span>)</span>.</p>
+      <dl class="choices">
+        <dt>Replace</dt><dd>Use the imported one everywhere and remove yours.</dd>
+        <dt>Use Current</dt><dd>Keep yours and skip the imported copy.</dd>
+        <dt>Keep Both</dt><dd>Import it alongside yours.</dd>
+      </dl>
+      <label class="opt"><input type="checkbox" data-f="all"> Apply to the other <span data-f="count"></span></label>
+      <div class="dialog-buttons">
+        <button class="btn" data-choice="replace">Replace</button>
+        <button class="btn primary" data-choice="current">Use Current</button>
+        <button class="btn" data-choice="both">Keep Both</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="picker" class="overlay" hidden>
+    <div class="dialog picker" role="dialog" aria-labelledby="picker-title">
+      <div class="dialog-head">
+        <span id="picker-title">Choose a target for “<span data-f="name"></span>”</span>
+        <button class="icon-btn" data-choice="cancel" title="Cancel">✕</button>
+      </div>
+      <p class="dim">The imported item will replace it everywhere it's used.</p>
+      <input data-f="search" type="search" placeholder="Search your project…" autocomplete="off" spellcheck="false">
+      <div class="chips">
+        <label class="chip"><input type="checkbox" data-kind="comp"> Comps</label>
+        <label class="chip"><input type="checkbox" data-kind="media"> Media</label>
+        <label class="chip"><input type="checkbox" data-kind="solid"> Solids</label>
+      </div>
+      <div class="picker-list" data-f="list"></div>
+      <div class="dialog-buttons">
+        <label class="opt grow"><input type="checkbox" data-f="hide" checked> Hide empty folders</label>
+        <button class="btn" data-choice="clear" hidden>Remove target</button>
+        <button class="btn" data-choice="cancel">Cancel</button>
+        <button class="btn primary" data-choice="ok" disabled>OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cep.js"></script>
+  <script src="js/aep.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
